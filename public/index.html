@@ -3,52 +3,36 @@
   <head>
     <title>Sutro demo</title>
     <style>
-      #screenAlert{
+      .screen{
         width:100%;
         height:100%;
         position: absolute;
         top: 0;
         left: 0;
-        background-image:url('/SutroAlertScreenv1.png');
-        background-repeat:no-repeat;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-      #screenGood{
-        width:100%;
-        height:100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image:url('/SutroHomeScreenv1.png');
-        background-repeat:no-repeat;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        display:none;
-      } 
-      #screenOrder{
-        width:100%;
-        height:100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image:url('/SutroOrderScreenv1.png');
         background-repeat:no-repeat;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
         display: none;
+        cursor: pointer;
+      }
+      #screenAlert{
+        background-image:url('/SutroAlertScreenv1.png');
+      }
+      #screenGood{
+        background-image:url('/SutroHomeScreenv1.png');
+      } 
+      #screenOrder{
+        background-image:url('/SutroOrderScreenv1.png'); 
       }
     </style>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.socket.io/socket.io-1.0.3.js"></script>
   </head>
   <body>
-    <div id='screenAlert'></div>
-    <div id='screenGood'></div>
-    <div id='screenOrder'></div>
+    <div class='screen' id='screenAlert'></div>
+    <div class='screen' id='screenGood'></div>
+    <div class='screen' id='screenOrder'></div>
 
     <script>
       var socket = io();
@@ -61,9 +45,9 @@
       socket.on('message', function(msg){
         goodpool();
         //delay 3 seconds then kick over to the order screen
-        setTimeout(function(){
-          orderpool();
-        }, 5000);
+        // setTimeout(function(){
+        //   orderpool();
+        // }, 5000);
       });
       
       var imgs = ["SutroAlertScreenv1.png", "SutroHomeScreenv1.png", "SutroOrderScreenv1.png"];
@@ -92,6 +76,9 @@
       
       $( document ).ready(function() {
         badpool(); //default on load
+        $('#screenGood').click(function(){
+          orderpool();
+        });
         console.log( "ready!" );
       });
     </script>
