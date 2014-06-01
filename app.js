@@ -16,6 +16,7 @@ app.route('/sensors')
 })
 .post(function(req, res, next){
   console.log('Got post');
+  console.log('body', req.body);
   res.send(204); 
 });
 
