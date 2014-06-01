@@ -53,3 +53,18 @@ module.exports.getTAAction = function(poolVolume, TA, SWG) {
     return;
   }
 };
+
+
+module.exports.getFCAction = function(poolVolume, CYA, pH, ORP, SWG) {
+  var FC = chem.getFC(pH, ORP);
+  var delta = targets.getFC(CYA, SWG) - FC;
+  if (delta > 0) {
+    return {
+      acount: 'add',
+      material: '6% bleach',
+      amount: chem.getMl_6pctBleach(poolVolume, delta),
+      units: 'ml'
+    };
+  }
+};
+
