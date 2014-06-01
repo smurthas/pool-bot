@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Sutro demo</title>
     <style>
       #screen{
         width:100%;
@@ -17,12 +17,26 @@
       }
     </style>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://cdn.socket.io/socket.io-1.0.3.js"></script>
   </head>
   <body>
     <div id='screen'></div>
     
     <script>
-      //var socket = io();
+      var socket = io();
+      
+      socket.on('test', function(msg){
+        alert(msg);
+      });
+      
+      socket.on('message', function(msg){
+        goodpool();
+        //delay 3 seconds then kick over to the order screen
+        setTimeout(function(){
+          orderpool();
+        }, 3000);
+      });
+      
       var imgs = ["SutroAlertScreenv1.png", "SutroHomeScreenv1.png", "SutroOrderScreenv1.png"];
       
       function goodpool(){
@@ -38,6 +52,7 @@
       };
       
       $( document ).ready(function() {
+        badpool(); //default on load
         console.log( "ready!" );
       });
     </script>

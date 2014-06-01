@@ -1,9 +1,9 @@
 var express = require("express");
 
 var app = express();
-var http = require('http');
-var util = require('util');
+var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var util = require('util');
 
 var logfmt = require("logfmt");
 app.use(logfmt.requestLogger());
@@ -20,9 +20,13 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  socket.on('chat message', function(msg){
+  socket.on('message', function(msg){
     console.log('message: ' + msg);
   });
+});
+
+app.get('/test', function(req, res){
+  io.emit('test', { for: 'everyone' });
 });
 
 app.route('/sensors')
@@ -32,10 +36,11 @@ app.route('/sensors')
 .post(function(req, res, next){
   console.log('Got post');
   console.log('body', req.body);
-  res.send(204); 
+  res.send(204);
+  io.emit('message', { for: 'everyone' });
 });
 
 var port = Number(process.env.PORT || 5000);
-app.listen(port, function() {
+http.listen(port, function() {
   console.log("Listening on " + port);
 });
