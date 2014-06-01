@@ -37,7 +37,9 @@ app.route('/sensors')
   console.log('Got post');
   console.log('body', req.body);
   res.send(204);
-  io.emit('message', { for: 'everyone' });
+  if(req.body.values.pH > 500){
+    io.emit('message', { for: 'everyone' });
+  }
 });
 
 var port = Number(process.env.PORT || 5000);

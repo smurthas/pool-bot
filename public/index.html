@@ -26,7 +26,8 @@
       var socket = io();
       
       socket.on('test', function(msg){
-        alert(msg);
+        console.log(msg);
+        alert('test!');
       });
       
       socket.on('message', function(msg){
