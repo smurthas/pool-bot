@@ -4,10 +4,11 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "4.0.x",
     "body-parser": "1.0.x",
+    "express": "4.0.x",
     "firebase": "1.0.x",
     "logfmt": "x",
+    "socket.io": "^1.0.3",
     "twilio": "x"
   },
   "engines": {

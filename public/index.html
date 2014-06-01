@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      #screen{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image:url('/SutroAlertScreenv1.png');
+        background-repeat:no-repeat;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  </head>
+  <body>
+  
+    <div id='screen'></div>
+    
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    var screens = ["SutroAlertScreenv1.png", "SutroHomeScreenv1.png", "SutroOrderScreenv1.png"];
+    
+    function goodpool(){
+      $('#screen').css('background-image', 'url(/' + screens[0] + ')'); 
+    };
+    
+    function badpool(){
+      $('#screen').css('background-image', 'url(/' + screens[1] + ')'); 
+    };
+    
+    function orderpool(){
+      $('#screen').css('background-image', 'url(/' + screens[2] + ')'); 
+    };
+    
+    $( document ).ready(function() {
+      console.log( "ready!" );
+    });
+  </script>
+  </body>
+</html>
