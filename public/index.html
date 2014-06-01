@@ -3,7 +3,7 @@
   <head>
     <title>Sutro demo</title>
     <style>
-      #screen{
+      #screenAlert{
         width:100%;
         height:100%;
         position: absolute;
@@ -15,13 +15,41 @@
         background-size: contain;
         background-position: center;
       }
+      #screenGood{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image:url('/SutroHomeScreenv1.png');
+        background-repeat:no-repeat;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        display:none;
+      } 
+      #screenOrder{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image:url('/SutroOrderScreenv1.png');
+        background-repeat:no-repeat;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        display: none;
+      }
     </style>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.socket.io/socket.io-1.0.3.js"></script>
   </head>
   <body>
-    <div id='screen'></div>
-    
+    <div id='screenAlert'></div>
+    <div id='screenGood'></div>
+    <div id='screenOrder'></div>
+
     <script>
       var socket = io();
       
@@ -35,21 +63,31 @@
         //delay 3 seconds then kick over to the order screen
         setTimeout(function(){
           orderpool();
-        }, 3000);
+        }, 5000);
       });
       
       var imgs = ["SutroAlertScreenv1.png", "SutroHomeScreenv1.png", "SutroOrderScreenv1.png"];
       
       function goodpool(){
-        $('#screen').css('background-image', 'url(/' + imgs[1] + ')'); 
+        //$('#screen').css('background-image', 'url(/' + imgs[1] + ')');
+        $('#screenAlert').hide();
+        $('#screenOrder').hide();
+        $('#screenGood').show();
+
       };
       
       function badpool(){
-        $('#screen').css('background-image', 'url(/' + imgs[0] + ')'); 
+        //$('#screen').css('background-image', 'url(/' + imgs[0] + ')'); 
+        $('#screenAlert').show();
+        $('#screenOrder').hide();
+        $('#screenGood').hide();
       };
       
       function orderpool(){
-        $('#screen').css('background-image', 'url(/' + imgs[2] + ')'); 
+        //$('#screen').css('background-image', 'url(/' + imgs[2] + ')'); 
+        $('#screenAlert').hide();
+        $('#screenOrder').show();
+        $('#screenGood').hide();
       };
       
       $( document ).ready(function() {
