@@ -7,6 +7,7 @@
     "express": "4.0.x",
     "body-parser": "1.0.x",
     "firebase": "1.0.x",
+    "logfmt": "x",
     "twilio": "x"
   },
   "engines": {
